@@ -5,7 +5,7 @@ static const unsigned int borderpx  = 1;
 // gaps between windows 
 static const unsigned int gappx = 6;
 // snap pixel 
-static const unsigned int snap = 32;
+static const unsigned int snap = 15;
 // 0: sloppy systray follows selected monitor, >0: pin systray to monitor X 
 static const unsigned int systraypinning = 0;
 // systray spacing 
@@ -21,7 +21,7 @@ static const int topbar = 1;
 
 // ---------------------------------- Fonts ------------------------------------
 
-static const char *fonts[] = { "UbuntuMono Nerd Font:size=14:weight=bold:antialias=true:autohint:true" };
+static const char *fonts[] = { "UbuntuMono Nerd Font:size=10:weight=bold:antialias=true:autohint:true" };
 static const char dmenufont[] = "UbuntuMono Nerd Font:size=12:antialias=true:autohint=true";
 
 // ---------------------------------- Colors -----------------------------------
@@ -151,7 +151,7 @@ static Key keys[] = {
     { MODKEY, XK_Right, schemeCycle, {0} },
 
     // Kill window
-    { MODKEY, XK_w, killclient, {0} },
+    { MODKEY|ShiftMask, XK_q, killclient, {0} },
 
     // Restart dwm
     { MODKEY|ControlMask, XK_r, quit, {1} },
@@ -177,37 +177,49 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_Return, spawn, {.v = dmenucmd } },
 
     // rofi
-    { MODKEY, XK_m, spawn, SHCMD("rofi -show drun") },
+    { MODKEY, XK_d, spawn, SHCMD("rofi -show drun") },
 
     // Window nav (rofi)
-    { MODKEY|ShiftMask, XK_m, spawn, SHCMD("rofi -show") },
+    { MODKEY|ShiftMask, XK_d, spawn, SHCMD("rofi -show") },
 
     // Terminal
     { MODKEY, XK_Return, spawn, SHCMD("alacritty") },
 
     // File explorer
-    { MODKEY, XK_e, spawn, SHCMD("pcmanfm") },
+    { MODKEY, XK_F4, spawn, SHCMD("pcmanfm") },
 
     // Browser
-    { MODKEY, XK_b, spawn, SHCMD("firefox") },
+    { MODKEY, XK_F1, spawn, SHCMD("google-chrome-stable") },
+    { MODKEY|ShiftMask, XK_F1, spawn, SHCMD("firefox") },
+
+    // Telegram
+    { MODKEY, XK_F3, spawn, SHCMD("telegram-desktop") },
 
     // Redshift
     { MODKEY, XK_r, spawn, SHCMD("redshift -O 2400") },
     { MODKEY|ShiftMask, XK_r, spawn, SHCMD("redshift -x") },
 
     // Screenshot
-    { MODKEY, XK_s, spawn, SHCMD("scrot") },
+    { MODKEY, XK_s, spawn, SHCMD("flameshot gui") },
+    { MODKEY|ShiftMask, XK_s, spawn, SHCMD("flameshot full -c") },
+
+     // Music
+    { MODKEY, XK_F5, spawn, SHCMD("alacritty -e 'mocp'") },
+    { MODKEY, XK_F5, spawn, SHCMD("mocp -x") },
+
+     // Background
+    { MODKEY, XK_F9, spawn, SHCMD("node /home/wyda/script/changeBackground.js") },
 
     // ----------------- Hardware ------------------
 
     // Volume
-    {0, XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%")},
-    {0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%")},
-    {0, XF86XK_AudioMute, spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle")},
+	{ MODKEY, XK_F10, spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle")},
+	{ MODKEY, XK_F11, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%")},
+	{ MODKEY, XK_F12, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%")},
 
     // Brightness
-    {0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl set +10%")},
-    {0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%-")},
+    //{ MODKEY|ShiftMask, XK_F11, spawn, SHCMD("brightnessctl set 10%-")},
+    //{ MODKEY|ShiftMask, XK_F12, spawn, SHCMD("brightnessctl set +10%")},
 
 };
 
