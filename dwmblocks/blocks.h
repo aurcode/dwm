@@ -1,9 +1,9 @@
 static const Block blocks[] = {
 //   Icon    Command                          Update Interval     Update Signal
-    { "  ", "checkupdates | wc -l",                 60,               0 },
-    { "",    "brightness",                           2,                0 },
+    { "  ", "checkupdates | wc -l && trizen -Su --aur --quiet | wc -l",                 60,               0 },
+   // { "",    "brightness",                           2,                0 },
     { "",    "volume",                               2,                0 },
-    { "",    "battery",                              60,               0 },
+    //{ "",    "battery",                              60,               0 },
     { "",    "date '+ %d/%m/%Y   %H:%M%p'",        5,                0 },
 };
 
